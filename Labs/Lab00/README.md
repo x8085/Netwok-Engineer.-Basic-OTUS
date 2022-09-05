@@ -9,5 +9,15 @@
 
 Проверяем файл конфигурации по умолчанию:  
 enable  
-show running-config
+show running-config  
+![](running-config_1.png)  
+![](running-config_2.png)  
+Сколько интерфейсов FastEthernet имеется на коммутаторе 2960?  
+24  
+Сколько интерфейсов Gigabit Ethernet имеется на коммутаторе 2960?  
+2  
+Каков диапазон значений, отображаемых в vty-линиях?  
+Диапазон: 0-4 и 5-15  
 
+Проверяем файл загрузочной конфигурации (startup configuration), который содержится в энергонезависимом ОЗУ (NVRAM):  
+show startup-config  
