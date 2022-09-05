@@ -53,7 +53,7 @@ S1(config-if)#end
 S1#  
 S1#copy running-config startup-config  
 ![](Basic_configure_switch.png)  
-
+![](Vlan_1_ip_add.png)  
 ##### Настройте IP-адрес для ПК.  
 
 #### Часть 3. Проверка сетевых подключений.  
