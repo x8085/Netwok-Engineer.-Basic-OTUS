@@ -55,7 +55,7 @@ S1#copy running-config startup-config
 ![](Basic_configure_switch.png)  
 ![](Vlan_1_ip_add.png)  
 ##### Настройте IP-адрес для ПК.  
-
+![](PC-A_configure.png)  
 #### Часть 3. Проверка сетевых подключений.  
 ##### Отобразите конфигурацию устройства.  
 
