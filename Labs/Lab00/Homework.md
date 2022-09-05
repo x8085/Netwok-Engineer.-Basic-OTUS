@@ -45,7 +45,15 @@ S1(config)#no ip domain-lookup
 S1(config)#end  
 S1#  
 S1#copy running-config startup-config  
+S1#configure terminal  
+S1(config)#interface vlan 1  
+S1(config-if)#ip address 192.168.1.2 255.255.255.0  
+S1(config-if)#no shutdown  
+S1(config-if)#end  
+S1#  
+S1#copy running-config startup-config  
 ![](Basic_configure_switch.png)  
+
 ##### Настройте IP-адрес для ПК.  
 
 #### Часть 3. Проверка сетевых подключений.  
