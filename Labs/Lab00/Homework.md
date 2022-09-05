@@ -45,7 +45,7 @@ S1(config)#no ip domain-lookup
 S1(config)#end  
 S1#  
 S1#copy running-config startup-config  
-
+![](Basic_configure_switch.png)  
 ##### Настройте IP-адрес для ПК.  
 
 #### Часть 3. Проверка сетевых подключений.  
