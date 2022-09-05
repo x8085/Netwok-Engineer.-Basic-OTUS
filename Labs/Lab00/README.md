@@ -24,7 +24,7 @@ show startup-config
 Почему появляется это сообщение?  
 Не знаю.  
 Изучите характеристики SVI для VLAN 1.  
-![](show interfaces VLAN 1.png)  
+![](show_interfaces_VLAN_1.png)  
 Назначен ли IP-адрес сети VLAN 1?  
 Нет  
 Какой MAC-адрес имеет SVI?  
