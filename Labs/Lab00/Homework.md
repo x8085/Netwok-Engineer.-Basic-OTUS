@@ -5,8 +5,8 @@
 | Устройство | Интерфейс | IP-адрес/префикс |
 | --- | --- | --- |
 | S1 | VLAN 1 | 192.168.1.2/24 |
-|  |  |  |  
-|  |  |  |  
+|  |  |  |
+|  |  |  |
 | PC-A | NIC | 192.168.1.10/24 |
 ### Задачи.  
 #### Часть 1. Проверка конфигурации коммутатора по умолчанию.  
@@ -16,6 +16,35 @@ show running-config
 ![](running-config_2.png)  
 #### Часть 2. Создание сети и настройка основных параметров устройства.  
 ##### Настройте базовые параметры коммутатора.  
+Switch>enable  
+Switch#configure terminal  
+Switch(config)#line console 0  
+Switch(config-line)#password cisco  
+Switch(config-line)#login  
+Switch(config-line)#end  
+Switch#  
+Switch#configure terminal  
+Switch(config)#enable secret class  
+Switch(config)#end  
+Switch#  
+Switch#configure terminal  
+Switch(config)#line vty 0 15  
+Switch(config-line)#password cisco  
+Switch(config-line)#login  
+Switch(config-line)#end  
+Switch#  
+Switch#configure terminal  
+Switch(config)#service password-encryption   
+Switch(config)#end  
+Switch#  
+Switch#configure terminal  
+Switch(config)#banner motd #  
+Unauthorized access is strictly prohibited. #  
+Switch(config)#hostname S1  
+S1(config)#no ip domain-lookup  
+S1(config)#end  
+S1#  
+S1#copy running-config startup-config  
 
 ##### Настройте IP-адрес для ПК.  
 
