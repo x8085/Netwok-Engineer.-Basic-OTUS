@@ -63,4 +63,4 @@ S1#copy running-config startup-config
 ##### Протестируйте сквозное соединение, отправив эхо-запрос.  
 ![](ping_PC-A_to_S1.png)  
 ##### Протестируйте возможности удаленного управления с помощью Telnet.  
-
+![](Telnet_connect.png)  
