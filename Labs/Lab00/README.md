@@ -95,7 +95,10 @@ Unauthorized access is strictly prohibited. #
 S1(config)# line con 0  
 S1(config-line)# logging synchronous   
 ##### Настройте каналы виртуального соединения для удаленного управления (vty), чтобы коммутатор разрешил доступ через Telnet. Если не настроить пароль VTY, будет невозможно подключиться к коммутатору по протоколу Telnet.  
-
+configure terminal  
+line vty 0 15  
+password cisco  
+login  
 **Для чего нужна команда login?**  
 Чтобы включить доступ к VTY.  
 #### Настройка IP-адреса на компьютере PC-A.
