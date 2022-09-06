@@ -46,7 +46,7 @@ show startup-config
 **Под управлением какой версии ОС Cisco IOS работает коммутатор?**  
 version 15.0  
 **Как называется файл образа системы?**  
-2960-lanbasek9-mz.150-2.SE4.bin
+2960-lanbasek9-mz.150-2.SE4.bin  
 **Какой базовый MAC-адрес назначен коммутатору?**  
 
 ##### Изучите свойства по умолчанию интерфейса FastEthernet, который используется компьютером PC-A.  
@@ -95,4 +95,4 @@ S1(config)# line con 0
 S1(config-line)# logging synchronous   
 
 #### Настройка IP-адреса на компьютере PC-A.
-
+![](PC-A_configure.png)  
