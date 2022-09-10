@@ -1,0 +1,20 @@
+enable  
+configure terminal  
+hostname S1  
+line console 0  
+password cisco  
+login  
+exit  
+enable secret class  
+line vty 0 15  
+password cisco  
+login  
+exit  
+service password-encription  
+banner motd # stop! go away! #  
+interface vlan 1  
+ip address 192.168.1.11 255.255.255.0  
+no shutdown  
+end  
+copy running-config startup-config  
+reload  
