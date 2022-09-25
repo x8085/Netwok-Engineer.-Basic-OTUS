@@ -1,0 +1,31 @@
+enable
+configure terminal
+hostname S1
+line console 0
+password cisco
+login
+exit
+enable secret class
+line vty 0 15
+password cisco
+login
+exit
+service password-encryption
+banner motd #
+STOP!!! DONT COMING!!! #
+end
+show sdm prefer
+configure terminal
+sdm prefer dual-ipv4-and-ipv6 default
+end
+reload
+cisco
+enable
+class
+configure terminal
+interface vlan 1
+ipv6 address 2001:db8:acad:1::b/64
+no shutdown
+end
+copy running-config startup-config
+reload
