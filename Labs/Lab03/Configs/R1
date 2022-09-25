@@ -1,0 +1,19 @@
+enable
+configure terminal
+hostname R1
+line console 0
+password cisco
+login
+end
+configure terminal
+enable secret class
+line vty 0 15
+password cisco
+login
+exit
+service password-encryption
+banner motd #
+GO AWAY!!! #
+end
+copy running-config startup-config
+reload
