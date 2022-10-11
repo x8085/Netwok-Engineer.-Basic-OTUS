@@ -96,8 +96,7 @@
 ![](SSH_R1_1.png)  
 ![](SSH_R1_2.png)  
 ##### Шаг 6. Установите соединение с маршрутизатором по протоколу SSH.
-1. Запустите Tera Term с PC-A.  
-![](Connect_SSH_to_R1_1.png)  
+1. Запустите Tera Term с PC-A.   
 ![](Connect_SSH_to_R1_2.png)  
 2. Установите SSH-подключение к R1. Use the username admin and password Adm1nP@55. У вас должно получиться установить SSH-подключение к R1.  
 ![](Connect_SSH_to_R1_3.png)  
