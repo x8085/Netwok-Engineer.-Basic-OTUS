@@ -1,7 +1,7 @@
 enable  
 configure terminal  
 no ip-domain lookup  
-hostname S1  
+hostname S2  
 enable secret class  
 line vty 0 4  
 password cisco  
