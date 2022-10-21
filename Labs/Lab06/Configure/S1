@@ -11,6 +11,7 @@ line console 0
 password cisco  
 login  
 logging synchronous  
+exit  
 banner motd #  
 !!! STOP !!! #  
 interface vlan 1  
