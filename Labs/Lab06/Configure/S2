@@ -1,21 +1,23 @@
 enable  
 configure terminal  
 no ip-domain lookup  
-hostname S2  
+hostname S1  
 enable secret class  
-line vty 0 4 password cisco  
+line vty 0 4  
+password cisco  
 login  
 exit  
 line console 0  
 password cisco  
 login  
-exit  
 logging synchronous  
+exit  
 banner motd #  
 !!! GO AWAY !!! #  
 interface vlan 1  
 ip address 192.168.1.2 255.255.255.0  
 no shutdown  
+exit  
 exit  
 copy running-config startup-config  
 reload  
