@@ -1,6 +1,6 @@
 enable  
 configure terminal  
-no ip-domain lookup  
+no ip domain-lookup  
 hostname S1  
 enable secret class  
 line vty 0 4  
