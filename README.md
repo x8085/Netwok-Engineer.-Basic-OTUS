@@ -1,6 +1,6 @@
 # Netwok-Engineer.-Basic-OTUS
 Labs and Final Project
 
- - [Практические работы](Labs/).  
+ - [Домашние работы](Labs/).  
  - [Проектная работа](Final/).  
- - [Практические уроки](Classwork/).
+ - [Практические уроки в классе](Classwork/).
