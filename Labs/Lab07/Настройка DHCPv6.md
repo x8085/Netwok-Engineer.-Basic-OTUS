@@ -36,25 +36,23 @@ b.	Отключите поиск DNS, чтобы предотвратить по
 c.	Назначьте class в качестве зашифрованного пароля привилегированного режима EXEC.  
 **enable secret class**  
 d.	Назначьте cisco в качестве пароля консоли и включите вход в систему по паролю.  
-**line console 0  
-password cisco  
-login  
-logging synchronous  
-exit**  
+**line console 0**  
+**password cisco**  
+**login**  
+**logging synchronous**  
+**exit**  
 e.	Назначьте cisco в качестве пароля VTY и включите вход в систему по паролю.  
-**line vty 0 4  
-password cisco  
-login  
-exit**  
+**line vty 0 4**  
+**password cisco**  
+**login**  
+**exit**  
 f.	Зашифруйте открытые пароли.  
 **service password-encryption**  
 g.	Создайте баннер с предупреждением о запрете несанкционированного доступа к устройству.  
-**banner motd #  
-!!! STOP !!!  
-#**  
+**banner motd # !!! STOP !!!#**  
 h.	Отключите все неиспользуемые порты.  
-**interface range fa0/1-4, fa0/7-24, gi0/1-2  
-shutdown**  
+**interface range fa0/1-4, fa0/7-24, gi0/1-2**  
+**shutdown**  
 i.	Сохраните текущую конфигурацию в файл загрузочной конфигурации.  
 **copy running-config startup-config**  
 Закройте окно настройки.  
