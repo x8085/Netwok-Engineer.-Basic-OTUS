@@ -97,10 +97,12 @@ a.	Настройте интерфейсы G0/0/0 и G0/1 на R1 и R2 с ад�
 **configure terminal**  
 **interface gigabitEthernet 0/0/0**  
 **ipv6 address 2001:db8:acad:2::1/64**  
+**ipv6 address fe80::1 link-local**  
 **no shutdown**  
 **exit**  
 **interface gigabitEthernet 0/0/1**  
 **ipv6 address 2001:db8:acad:1::1/64**  
+**ipv6 address fe80::1 link-local**  
 **no shutdown**  
 **exit**  
 b.	Настройте маршрут по умолчанию на каждом маршрутизаторе, который указывает на IP-адрес G0/0/0 на другом маршрутизаторе.  
