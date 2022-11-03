@@ -1,8 +1,0 @@
-configure terminal
-vlan 1
-exit
-interface fastEthernet 0/18
-switchport mode access 
-switchport access vlan 1
-no shutdown 
-exit
