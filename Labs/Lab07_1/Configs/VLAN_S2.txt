@@ -1,0 +1,13 @@
+configure terminal
+vlan 1
+exit
+interface fastEthernet 0/18
+switchport mode access 
+switchport access vlan 1
+no shutdown 
+exit
+interface vlan 1
+ip address 192.168.1.98 255.255.255.240
+no shutdown 
+exit
+ip default-gateway 192.168.1.97
