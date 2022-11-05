@@ -1,0 +1,13 @@
+enable  
+configure terminal
+int gi0/0/1
+ip address 192.168.1.97 255.255.255.240
+no shutdown
+exit
+int gi0/0/0
+ip address 10.0.0.2 255.255.255.252
+no shutdown
+exit
+ip route 0.0.0.0 255.255.255.252 10.0.0.1
+exit
+copy running-config startup-config  
