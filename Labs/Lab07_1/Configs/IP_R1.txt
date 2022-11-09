@@ -13,7 +13,7 @@ description Management
 no shutdown
 exit
 int gi0/0/1.1000
-encapsulation dot1Q 1000
+encapsulation dot1Q 1000 native
 description Native
 no shutdown
 exit
