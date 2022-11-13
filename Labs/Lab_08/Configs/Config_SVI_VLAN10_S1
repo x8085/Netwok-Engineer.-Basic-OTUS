@@ -1,0 +1,7 @@
+enable  
+configure terminal  
+interface vlan 10  
+ip address 192.168.10.201 255.255.255.0  
+no shutdown  
+description SVI S1  
+exit  
