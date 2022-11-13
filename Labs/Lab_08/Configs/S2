@@ -1,0 +1,11 @@
+enable  
+configure terminal  
+hostname S1  
+no ip domain-lookup  
+interface fastEthernet 0/18  
+description Link to PC-B  
+exit  
+interface fastEthernet 0/1  
+description Link to S1  
+exit  
+ip default-gateway 192.168.10.1  
