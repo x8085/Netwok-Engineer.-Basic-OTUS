@@ -86,8 +86,40 @@ h.	Запустите Ping до  адреса интерфейса R2 Loopback 1
 ##### Шаг 1. Реализация различных оптимизаций на каждом маршрутизаторе.
 Откройте окно конфигурации  
 a.	На R1 настройте приоритет OSPF интерфейса G0/0/1 на 50, чтобы убедиться, что R1 является назначенным маршрутизатором.  
+_R1>enable  
+R1#configure terminal  
+R1(config)#interface gigabitEthernet 0/0/1  
+R1(config-if)#ip ospf priority 50  
+R1(config-if)#end  
+R1#clear ip ospf process  
+Reset ALL OSPF processes? [no]: y  
+R1#_  
 b.	Настройте таймеры OSPF на G0/0/1 каждого маршрутизатора для таймера приветствия, составляющего 30 секунд.  
+**Для R1:**  
+_R1>enable  
+R1#configure terminal  
+R1(config)#interface gigabitEthernet 0/0/1  
+R1(config-if)#ip ospf hello-interval 30  
+R1(config-if)#exit  
+R1(config)#_  
+**Для R2:**  
+_R2>enable  
+R2#configure terminal  
+R2(config)#interface gigabitEthernet 0/0/1  
+R2(config-if)#ip ospf hello-interval 30  
+R2(config-if)#exit  
+R2(config)#_  
 c.	На R1 настройте статический маршрут по умолчанию, который использует интерфейс Loopback 1 в качестве интерфейса выхода. Затем распространите маршрут по умолчанию в OSPF. Обратите внимание на сообщение консоли после установки маршрута по умолчанию.  
+_R1>enable  
+R1#configure terminal  
+Enter configuration commands, one per line.  End with CNTL/Z.  
+R1(config)#ip route 0.0.0.0 0.0.0.0 loopback 1  
+%Default route without gateway, if not a point-to-point interface, may impact performance  
+R1(config)#router ospf 56  
+R1(config-router)#default-information originate  
+R1(config-router)#end  
+R1#_  
+![](default_information_originate_R1.png)  
 d.	добавьте конфигурацию, необходимую для OSPF для обработки R2 Loopback 1 как сети точка-точка. Это приводит к тому, что OSPF объявляет Loopback 1 использует маску подсети интерфейса.  
 e.	Только на R2 добавьте конфигурацию, необходимую для предотвращения отправки объявлений OSPF в сеть Loopback 1.  
 f.	Измените базовую пропускную способность для маршрутизаторов. После этой настройки перезапустите OSPF с помощью команды clear ip ospf process . Обратите внимание на сообщение консоли после установки новой опорной полосы пропускания.  
