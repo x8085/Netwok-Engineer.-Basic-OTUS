@@ -121,8 +121,60 @@ R1(config-router)#end
 R1#_  
 ![](default_information_originate_R1.png)  
 d.	добавьте конфигурацию, необходимую для OSPF для обработки R2 Loopback 1 как сети точка-точка. Это приводит к тому, что OSPF объявляет Loopback 1 использует маску подсети интерфейса.  
+**Для R2:**  
+_R2>enable  
+R2#configure terminal  
+Enter configuration commands, one per line.  End with CNTL/Z.  
+R2(config)#interface loopback 1  
+R2(config-if)#ip ospf network point-to-point  
+R2(config-if)#exit  
+R2(config)#_  
 e.	Только на R2 добавьте конфигурацию, необходимую для предотвращения отправки объявлений OSPF в сеть Loopback 1.  
+**Для R2:**  
+_R2>enable  
+R2#configure terminal  
+R2(config)#router ospf 56  
+R2(config-router)#passive-interface loopback 1  
+R2(config-router)#exit  
+R2(config)#_  
 f.	Измените базовую пропускную способность для маршрутизаторов. После этой настройки перезапустите OSPF с помощью команды clear ip ospf process . Обратите внимание на сообщение консоли после установки новой опорной полосы пропускания.  
+**Для R1:**  
+_R1>enable  
+Password:  
+R1#configure terminal  
+Enter configuration commands, one per line.  End with CNTL/Z.  
+R1(config)#router ospf 56  
+R1(config-router)#auto-cost reference-bandwidth 1000  
+% OSPF: Reference bandwidth is changed.  
+        Please ensure reference bandwidth is consistent across all routers.  
+R1(config-router)#exit  
+R1(config)#exit  
+R1#clear ip ospf process  
+Reset ALL OSPF processes? [no]: y  
+R1#  
+01:09:32: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Adjacency forced to reset  
+01:09:32: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached  
+R1#  
+01:10:00: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done  
+01:11:30: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done  
+R1#_  
+**Для R2:**  
+_R2>enable  
+R2#configure terminal  
+R2(config)#router ospf 56  
+R2(config-router)#auto-cost reference-bandwidth 1000  
+% OSPF: Reference bandwidth is changed.  
+        Please ensure reference bandwidth is consistent across all routers.  
+R2(config-router)#exit  
+R2(config)#exit  
+R2#clear ip ospf process  
+Reset ALL OSPF processes? [no]: y  
+R2#  
+01:11:21: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Adjacency forced to reset  
+01:11:21: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached  
+R2#  
+01:11:30: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done  
+R2#_  
 ##### Шаг 2. Убедитесь, что оптимизация OSPFv2 реализовалась.
 a.	Выполните команду show ip ospf interface g0/0/1 на R1 и убедитесь, что приоритет интерфейса установлен равным 50, а временные интервалы — Hello 30, Dead 120, а тип сети по умолчанию — Broadcast.  
 b.	На R1 выполните команду show ip route ospf, чтобы убедиться, что сеть R2 Loopback1 присутствует в таблице маршрутизации. Обратите внимание на разницу в метрике между этим выходным и предыдущим выходным. Также обратите внимание, что маска теперь составляет 24 бита, в отличие от 32 битов, ранее объявленных.  
