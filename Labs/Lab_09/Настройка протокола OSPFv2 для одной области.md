@@ -100,6 +100,7 @@ _R1>enable
 R1#configure terminal  
 R1(config)#interface gigabitEthernet 0/0/1  
 R1(config-if)#ip ospf hello-interval 30  
+R1(config-if)#ip ospf dead-interval 120  
 R1(config-if)#exit  
 R1(config)#_  
 **Для R2:**  
@@ -107,6 +108,7 @@ _R2>enable
 R2#configure terminal  
 R2(config)#interface gigabitEthernet 0/0/1  
 R2(config-if)#ip ospf hello-interval 30  
+R1(config-if)#ip ospf dead-interval 120  
 R2(config-if)#exit  
 R2(config)#_  
 c.	На R1 настройте статический маршрут по умолчанию, который использует интерфейс Loopback 1 в качестве интерфейса выхода. Затем распространите маршрут по умолчанию в OSPF. Обратите внимание на сообщение консоли после установки маршрута по умолчанию.  
@@ -177,8 +179,12 @@ R2#
 R2#_  
 ##### Шаг 2. Убедитесь, что оптимизация OSPFv2 реализовалась.
 a.	Выполните команду show ip ospf interface g0/0/1 на R1 и убедитесь, что приоритет интерфейса установлен равным 50, а временные интервалы — Hello 30, Dead 120, а тип сети по умолчанию — Broadcast.  
+![](Show_ip_ospf_int_gi_001_R1.png)  
 b.	На R1 выполните команду show ip route ospf, чтобы убедиться, что сеть R2 Loopback1 присутствует в таблице маршрутизации. Обратите внимание на разницу в метрике между этим выходным и предыдущим выходным. Также обратите внимание, что маска теперь составляет 24 бита, в отличие от 32 битов, ранее объявленных.  
+![](show_ip_route_ospf_R1.png.png)  
 c.	Введите команду show ip route ospf на маршрутизаторе R2. Единственная информация о маршруте OSPF должна быть распространяемый по умолчанию маршрут R1.  
+![](Show_ip_route_ospf_R2.png)  
 d.	Запустите Ping до адреса интерфейса R1 Loopback 1 из R2. Выполнение команды ping должно быть успешным.  
+![](Ping_from_R2_to loopback1_R1.png)  
 **Вопрос:
 Почему стоимость OSPF для маршрута по умолчанию отличается от стоимости OSPF в R1 для сети 192.168.1.0/24?**
