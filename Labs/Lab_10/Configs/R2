@@ -1,0 +1,28 @@
+Router>enable
+Router#configure terminal 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname R2
+R2(config)#no ip domain-lookup 
+R2(config)#enable secret class
+R2(config)#line console 0
+R2(config-line)#password cisco
+R2(config-line)#login
+R2(config-line)#exit
+R2(config)#line vty 0 4
+R2(config-line)#password cisco
+R2(config-line)#login
+R2(config-line)#exit
+R2(config)#service password-encryption 
+R2(config)#banner motd #
+Enter TEXT message.  End with the character '#'.
+!!! WARNING !!!
+#
+R2(config)#exit
+R2#
+%SYS-5-CONFIG_I: Configured from console by console
+R2#copy running-config start
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
