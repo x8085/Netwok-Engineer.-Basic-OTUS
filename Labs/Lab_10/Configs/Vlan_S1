@@ -75,4 +75,7 @@ S1(config-if-range)#exit
 S1(config)#vlan 1000
 S1(config-vlan)#name Native
 S1(config-vlan)#exit
+S1(config)#vlan 40
+S1(config-vlan)#name Sales
+S1(config-vlan)#exit
 S1(config)#
