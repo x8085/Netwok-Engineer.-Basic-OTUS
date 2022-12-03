@@ -1,0 +1,14 @@
+S2>enable
+Password: 
+S2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#interface fastEthernet 0/1
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/1 (1), with S1 FastEthernet0/1 (1000).
+
+S2(config-if)#interface fastEthernet 0/1
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 1000
+S2(config-if)#switchport trunk allowed vlan 20,30,40,1000
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+S2(config)#
