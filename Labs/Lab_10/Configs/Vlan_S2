@@ -1,0 +1,81 @@
+S2>enable
+Password: 
+S2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#vlan 20
+S2(config-vlan)#name Management
+S2(config-vlan)#exit
+S2(config)#interface vlan 20
+S2(config-if)#
+%LINK-5-CHANGED: Interface Vlan20, changed state to up
+
+S2(config-if)#ip address 10.20.0.3 255.255.255.0
+S2(config-if)#no shutdown
+S2(config-if)#exit
+S2(config)#ip default-gateway 10.20.0.1
+S2(config)#vlan 40
+S2(config-vlan)#name Sales
+S2(config-vlan)#exit
+S2(config)#interface fastEthernet 0/18
+S2(config-if)#switchport mode access
+S2(config-if)#switchport access vlan 40
+S2(config-if)#no shutdown
+S2(config-if)#exit
+S2(config)#vlan 1000
+S2(config-vlan)#name Native
+S2(config-vlan)#exit
+S2(config)#vlan 999
+S2(config-vlan)#name ParkingLot
+S2(config-vlan)#exit
+S2(config)#interface range fastEthernet 0/2-4, fastEthernet 0/6-17, fastEthernet 0/19-24, gigabitEthernet 0/1-2
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+
+%LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/6, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
+S2(config-if-range)#exit
+S2(config)#
