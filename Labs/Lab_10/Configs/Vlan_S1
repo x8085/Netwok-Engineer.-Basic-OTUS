@@ -72,4 +72,7 @@ S1(config-if-range)#shutdown
 
 %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
 S1(config-if-range)#exit
+S1(config)#vlan 1000
+S1(config-vlan)#name Native
+S1(config-vlan)#exit
 S1(config)#
