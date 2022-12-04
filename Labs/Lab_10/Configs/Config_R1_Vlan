@@ -66,4 +66,13 @@ R1(config-if)#
 %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
 
 R1(config-if)#exit
+R1(config)#interface loopback 1
+R1(config-if)#
+%LINK-5-CHANGED: Interface Loopback1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback1, changed state to up
+
+R1(config-if)#ip address 172.16.1.1 255.255.255.0
+R1(config-if)#no shutdown
+R1(config-if)#exit
 R1(config)#
