@@ -1,0 +1,19 @@
+S2>enable
+Password: 
+S2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#username SSHadmin secret $cisco123!
+S2(config)#ip domain-name ccna-lab.com
+
+S2(config)#crypto key generate rsa general-keys modulus 1024
+The name for the keys will be: S2.ccna-lab.com
+
+% The key modulus size is 1024 bits
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+*Mar 4 22:8:32.629: %SSH-5-ENABLED: SSH 1.99 has been enabled
+S2(config)#ip ssh version 2
+S2(config)#line vty 0 4
+S2(config-line)#transport input ssh
+S2(config-line)#login local
+S2(config-line)#exit
+S2(config)#
