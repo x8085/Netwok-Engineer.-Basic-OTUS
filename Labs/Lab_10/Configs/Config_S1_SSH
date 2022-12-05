@@ -10,6 +10,7 @@ The name for the keys will be: S1.ccna-lab.com
 % The key modulus size is 1024 bits
 % Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
 *Mar 4 22:3:43.980: %SSH-5-ENABLED: SSH 1.99 has been enabled
+S1(config)#ip ssh version 2
 S1(config)#line vty 0 4
 S1(config-line)#transport input ssh
 S1(config-line)#login local
