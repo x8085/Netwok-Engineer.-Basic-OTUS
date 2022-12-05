@@ -81,4 +81,9 @@ S2(config-if-range)#exit
 S2(config)#vlan 30
 S2(config-vlan)#name Operations
 S2(config-vlan)#exit
+S2(config)#interface fastEthernet 0/5
+S2(config-if)#switchport mode access
+S2(config-if)#switchport access vlan 20
+S2(config-if)#no shutdown
+S2(config-if)#exit
 S2(config)#
