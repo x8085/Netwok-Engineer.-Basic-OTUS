@@ -72,12 +72,13 @@ Pro Inside global Inside local Outside local Outside global
 --- 209.165.200.226 192.168.1.3 --- ---  
 226:1 192.168.1. 3:1 209.165.200. 1:1 209.165.200. 1:1  
 Total number of translations: 2  
+![](Show_ip_nat_translations_after_ping_from_PC-B_to_Loopback1_part2_step2.png)  
 **Вопросы:**
 Во что был транслирован внутренний локальный адрес PC-B?  
 Введите ваш ответ здесь.  
- 
+**Dнутренний локальный адрес PC-B был транслирован в 209.165.200.226**
 Какой тип адреса NAT является переведенным адресом?  
- 
+
 b.	С PC-A, запустите  эхо-запрос интерфейса Lo1 (209.165.200.1) на R2. Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
 _R1# show ip nat translations_  
 Pro Inside global Inside local Outside local Outside global  
@@ -86,7 +87,8 @@ Pro Inside global Inside local Outside local Outside global
 227:1 192.168.1. 2:1 209.165.200. 1:1 209.165.200. 1:1  
 226:1 192.168.1. 3:1 209.165.200. 1:1 209.165.200. 1:1  
 Total number of translations: 4  
-c.	Обратите внимание, что предыдущая трансляция для PC-B все еще находится в таблице. Из S1, эхо-запрос интерфейса Lo1 (209.165.200.1) на R2. Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
+![](Show_ip_nat_translations_after_ping_from_PC-A_to_Loopback1_part2_step2.png)  
+c.	Обратите внимание, что предыдущая трансляция для PC-B все еще находится в таблице (~~В моем случае предыдущая трансляция отсутствует~~). Из S1, эхо-запрос интерфейса Lo1 (209.165.200.1) на R2 (~~Эхо запрос не прошел~~). Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
 _R1# show ip nat translations_  
 Pro Inside global Inside local Outside local Outside global  
 --- 209.165.200.227 192.168.1.2 --- ---  
