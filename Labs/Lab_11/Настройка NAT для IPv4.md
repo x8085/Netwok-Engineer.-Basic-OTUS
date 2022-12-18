@@ -184,6 +184,7 @@ Pro Inside global Inside local Outside local Outside global
 209.165.200. 230:1 192.168.1. 12:1 209.165.200. 1:1 209.165.200. 1:1  
 Total number of translations: 4  
 Теперь все внутренние глобальные адреса сопоставляются с IP-адресом интерфейса g0/0/0.  
+![](Show_ip_nat_translations_after_ping_from_PC-A_PC-B_S1_S2_to_Loopback1_part3_step6.png)  
 Остановите все пинги. На PC-A и PC-B, используя комбинацию клавиш CTRL-C.  
 Закройте окно настройки.  
 #### Часть 4. Настройка и проверка статического NAT для IPv4.
