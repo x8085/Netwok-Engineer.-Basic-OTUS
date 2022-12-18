@@ -84,6 +84,7 @@ S2(config-if-range)#shutdown
 
 %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
 S2(config-if-range)#exit
+S2(config)#ip default-gateway 192.168.1.1
 S2(config)#exit
 S2#
 %SYS-5-CONFIG_I: Configured from console by console
