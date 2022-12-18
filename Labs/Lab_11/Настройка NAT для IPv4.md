@@ -111,7 +111,7 @@ Pro Inside global Inside local Outside local Outside global
 <output omitted>  
 f.	Учитывая, что пул ограничен тремя адресами, NAT для пула адресов недостаточно для нашего приложения. Очистите преобразование NAT и статистику, и мы перейдем к PAT.  
 _R1# clear ip nat translations *  
-R1# clear ip nat statistics_  
+R1# clear ip nat statistics_**Данная опция отсутствует в СРТ.**    
 Закройте окно настройки.  
 #### Часть 3. Настройка и проверка PAT для IPv4.
 В части 3 необходимо настроить замену NAT на PAT в пул адресов, а затем на PAT с помощью интерфейса.  
