@@ -88,7 +88,7 @@ Pro Inside global Inside local Outside local Outside global
 226:1 192.168.1. 3:1 209.165.200. 1:1 209.165.200. 1:1  
 Total number of translations: 4  
 ![](Show_ip_nat_translations_after_ping_from_PC-A_to_Loopback1_part2_step2.png)  
-c.	Обратите внимание, что предыдущая трансляция для PC-B все еще находится в таблице (~~В моем случае предыдущая трансляция отсутствует~~). Из S1, эхо-запрос интерфейса Lo1 (209.165.200.1) на R2 (~~Эхо запрос не прошел~~). Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
+c.	Обратите внимание, что предыдущая трансляция для PC-B все еще находится в таблице (~~В моем случае предыдущая трансляция отсутствует~~). Из S1, эхо-запрос интерфейса Lo1 (209.165.200.1) на R2. Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
 _R1# show ip nat translations_  
 Pro Inside global Inside local Outside local Outside global  
 --- 209.165.200.227 192.168.1.2 --- ---  
@@ -97,10 +97,13 @@ Pro Inside global Inside local Outside local Outside global
 226:1 192.168.1. 3:1 209.165.200. 1:1 209.165.200. 1:1  
 228:0 192.168.1. 11:0 209.165.200. 1:0 209.165.200. 1:0 209.165.200. 1:0  
 Total number of translations: 5  
+![](Show_ip_nat_translations_after_ping_from_PC-A_PC-B_S1_to_Loopback1_part2_step3.png)  
 d.	Теперь запускаем пинг R2 Lo1 из S2. На этот раз перевод завершается неудачей, и вы получаете эти сообщения (или аналогичные) на консоли R1:  
 Sep 23 15:43:55.562: %IOSXE-6-PLATFORM: R0/0: cpp_cp: QFP:0.0 Thread:000 TS:00000001473688385900 %NAT-6-ADDR_ALLOC_FAILURE: Address allocation failed; pool 1 may be exhausted [2]  
+**Данное сообщение не выводится, но эхо-запрос не проходит.**  
 e.	Это ожидаемый результат, потому что выделено только 3 адреса, и мы попытались ping Lo1 с четырех устройств. Напомним, что NAT — это трансляция «один-в-один». Как много выделено трансляций? Введите команду **show ip nat translations verbose** , и вы увидите, что ответ будет 24 часа.  
 _R1# show ip nat translations verbose_  
+**Данная опция отсутствует в СРТ.**  
 Pro Inside global Inside local Outside local Outside global  
 --- 209.165.200.226 192.168.1.3 --- ---  
   create: 09/23/19 15:35:27, use: 09/23/19 15:35:27, timeout: 23:56:42  
