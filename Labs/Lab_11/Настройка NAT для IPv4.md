@@ -78,7 +78,7 @@ Total number of translations: 2
 Введите ваш ответ здесь.  
 **Внутренний локальный адрес PC-B был транслирован в 209.165.200.226**  
 Какой тип адреса NAT является переведенным адресом?  
-
+**В данном случае используется динамический NAT**  
 b.	С PC-A, запустите  эхо-запрос интерфейса Lo1 (209.165.200.1) на R2. Если эхо-запрос не прошел, выполните отладку. На R1 отобразите таблицу NAT на R1 с помощью команды show ip nat translations.  
 _R1# show ip nat translations_  
 Pro Inside global Inside local Outside local Outside global  
