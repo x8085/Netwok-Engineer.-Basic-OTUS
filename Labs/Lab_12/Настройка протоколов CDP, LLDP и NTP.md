@@ -92,6 +92,8 @@ f.Отключить CDP глобально на всех устройствах
 a.Введите соответствующую команду lldp, чтобы включить LLDP на всех устройствах в топологии.  
 b.На S1 выполните соответствующую команду lldp, чтобы предоставить подробную информацию о S2.  
 S1# show lldp entry S2  
+**Данная команда отсутствует в СРТ**  
+![](Show_lldp_entry_S2_Part3_b.png)  
 
 Capability codes:  
     (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device  
