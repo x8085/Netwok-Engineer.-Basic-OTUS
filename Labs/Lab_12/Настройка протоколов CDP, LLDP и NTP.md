@@ -98,45 +98,13 @@ S1# show lldp entry S2
 **Но получилось посмотреть подробную информацию о соседях следующей командой:**  
 ![](show_lldp_neighbors_detail_Part3_b.png)  
 
-Capability codes:  
-    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device  
-    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other  
-------------------------------------------------
-Local Intf: Fa0/1    
-Chassis id: c025.5cd7.ef00   
-Port id: Fa0/1   
-Port Description: FastEthernet0/1  
-System Name: S2  
-
-System Description:  
-Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.2(4)E8, RELEASE SOFTWARE (fc3)   
-Technical Support: http://www.cisco.com/techsupport  
-Copyright (c) 1986-2019 by Cisco Systems, Inc.  
-Compiled Fri 15-Mar-19 17:28 by prod_rel_team   
-
-Time remaining: 109 seconds   
-System Capabilities: B  
-Enabled Capabilities: B  
-Management Addresses:  
-    IP: 10.22.0.3   
-Auto Negotiation - supported, enabled  
-Physical media capabilities:  
-    100base-TX(FD)  
-    100base-TX(HD)  
-    10base-T(FD)  
-    10base-T(HD)  
-Media Attachment Unit type: 16  
-Vlan ID: 1  
-
-
-Total entries displayed: 1  
 Вопрос:  
 Что такое chassis ID  для коммутатора S2?  
 Введите ваш ответ здесь.  
 **chassis ID  для коммутатора S2-это МАС-адрес интерфейса FastEthernet0/1, которым он подключен к S1**  
 Закройте окно настройки.  
 c.Соединитесь через консоль на всех устройствах и используйте команды LLDP, необходимые для отображения топологии физической сети только из выходных данных команды show.  
- 
+**_Не совсем понял, что необходимо сделать в данном пункте_**  
 #### Часть 4. Настройка NTP
 В части 4 необходимо настроить маршрутизатор R1 в качестве сервера NTP, а маршрутизатор R2 в качестве клиента NTP маршрутизатора R1. Необходимо выполнить синхронизацию времени для Syslog и отладочных функций. Если время не синхронизировано, сложно определить, какое сетевое событие стало причиной данного сообщения.  
 ##### Шаг 1. Выведите на экран текущее время.
