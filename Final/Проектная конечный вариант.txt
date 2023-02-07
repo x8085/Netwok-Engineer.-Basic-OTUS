@@ -1,0 +1,896 @@
+1. Настрайваем конечных пользователей (ip-адреса, шлюзы)
+2. Настраиваем Vlan-ы на L2-коммутаторах.
+
+S1
+Switch>enable
+Switch#configure terminal
+Switch(config)#hostname S1
+S1(config)#vlan 10
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+S1(config)#interface vlan 10
+S1(config-if)#ip address 192.168.10.2 255.255.255.0
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#ip default-gateway 192.168.10.254
+S1(config)#vlan 20
+S1(config-vlan)#name IT
+S1(config-vlan)#exit
+S1(config)#vlan 30
+S1(config-vlan)#name Sales
+S1(config-vlan)#exit
+S1(config)#vlan 40
+S1(config-vlan)#name Operations
+S1(config-vlan)#exit
+S1(config)#vlan 999
+S1(config-vlan)#name ParkingLot
+S1(config-vlan)#exit
+S1(config)#vlan 1000
+S1(config-vlan)#name Native
+S1(config-vlan)#exit
+S1(config)#interface fastEthernet 0/1
+S1(config-if)#switchport mode access 
+S1(config-if)#switchport access vlan 30
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#interface fastEthernet 0/2
+S1(config-if)#switchport mode access 
+S1(config-if)#switchport access vlan 40
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#interface range fastEthernet 0/3-9, fastEthernet 0/12-24, gigabitEthernet 0/1-2
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#interface range fastEthernet 0/10-11
+S1(config-if-range)#switchport mode trunk 
+S1(config-if-range)#switchport trunk native vlan 1000
+S1(config-if-range)#switchport trunk allowed vlan 10,20,30,40,1000
+S1(config-if-range)#no shutdown 
+S1(config-if-range)#exit
+S1(config)#exit
+S1#
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#
+
+S2
+Switch>enable
+Switch#configure terminal 
+Switch(config)#hostname S2
+S2(config)#vlan 10
+S2(config-vlan)#name Management
+S2(config-vlan)#exit
+S2(config)#interface vlan 10
+S2(config-if)#ip address 192.168.10.3 255.255.255.0
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+S2(config)#ip default-gateway 192.168.10.254
+S2(config)#vlan 20
+S2(config-vlan)#name IT
+S2(config-vlan)#exit
+S2(config)#vlan 30
+S2(config-vlan)#name Sales
+S2(config-vlan)#exit
+S2(config)#vlan 40
+S2(config-vlan)#name Operations
+S2(config-vlan)#exit
+S2(config)#vlan 999
+S2(config-vlan)#name ParkingLot
+S2(config-vlan)#exit
+S2(config)#vlan 1000
+S2(config-vlan)#name Native
+S2(config-vlan)#exit
+S2(config)#interface fastEthernet 0/1
+S2(config-if)#switchport mode access 
+S2(config-if)#switchport access vlan 30
+S2(config-if)#no shutdown
+S2(config-if)#exit
+S2(config)#interface fastEthernet 0/2
+S2(config-if)#switchport mode access 
+S2(config-if)#switchport access vlan 40
+S2(config-if)#no shutdown
+S2(config-if)#exit
+S2(config)#interface range fastEthernet 0/3-9, fastEthernet 0/12-24, gigabitEthernet 0/1-2
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#interface range fastEthernet 0/10-11
+S2(config-if-range)#switchport mode trunk 
+S2(config-if-range)#switchport trunk native vlan 1000
+S2(config-if-range)#switchport trunk allowed vlan 10,20,30,40,1000
+S2(config-if-range)#no shutdown
+S2(config-if-range)#exit
+S2(config)#exit
+S2#
+S2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#
+
+S3
+Switch>enable
+Switch#configure terminal 
+Switch(config)#hostname S3
+S3(config)#vlan 10
+S3(config-vlan)#name Management
+S3(config-vlan)#exit
+S3(config)#interface vlan 10
+S3(config-if)#ip address 192.168.10.4 255.255.255.0
+S3(config-if)#no shutdown 
+S3(config-if)#exit
+S3(config)#ip default-gateway 192.168.10.254
+S3(config)#vlan 20
+S3(config-vlan)#name IT
+S3(config-vlan)#exit
+S3(config)#vlan 30
+S3(config-vlan)#name Sales
+S3(config-vlan)#exit
+S3(config)#vlan 40
+S3(config-vlan)#name Operations
+S3(config-vlan)#exit
+S3(config)#vlan 999
+S3(config-vlan)#name ParkingLot
+S3(config-vlan)#exit
+S3(config)#vlan 1000
+S3(config-vlan)#name Native
+S3(config-vlan)#exit
+S3(config)#interface fastEthernet 0/1
+S3(config-if)#switchport mode access 
+S3(config-if)#switchport access vlan 40
+S3(config-if)#no shutdown
+S3(config-if)#exit
+S3(config)#interface fastEthernet 0/2
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 30
+S3(config-if)#no shutdown
+S3(config-if)#exit
+S3(config)#interface fastEthernet 0/3
+S3(config-if)#switchport mode access
+S3(config-if)#switchport access vlan 20
+S3(config-if)#no shutdown
+S3(config-if)#exit
+S3(config)#interface range fastEthernet 0/4-9, fastEthernet 0/12-24, gigabitEthernet 0/1-2
+S3(config-if-range)#switchport mode access
+S3(config-if-range)#switchport access vlan 999
+S3(config-if-range)#shutdown
+S3(config-if-range)#exit
+S3(config)#interface range fastEthernet 0/10-11
+S3(config-if-range)#switchport mode trunk
+S3(config-if-range)#switchport trunk native vlan 1000
+S3(config-if-range)#switchport trunk allowed vlan 10,20,30,40,1000
+S3(config-if-range)#no shutdown
+S3(config-if-range)#exit
+S3(config)#exit
+S3#
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#
+
+3. Настраиваем Vlan-ы на L3-коммутаторах.
+SW1
+Switch>enable
+Switch#configure terminal 
+Switch(config)#hostname SW1
+SW1(config)#vlan 10
+SW1(config-vlan)#name Management
+SW1(config-vlan)#exit
+SW1(config)#vlan 20
+SW1(config-vlan)#name IT
+SW1(config-vlan)#exit
+SW1(config)#vlan 30
+SW1(config-vlan)#name Sales
+SW1(config-vlan)#exit
+SW1(config)#vlan 40
+SW1(config-vlan)#name Operations
+SW1(config-vlan)#exit
+SSW1(config)#vlan 1000
+SW1(config-vlan)#name Native
+SW1(config-vlan)#exit
+SW1(config)#interface range gigabitEthernet 1/0/10-12
+SW1(config-if-range)#switchport mode trunk
+SW1(config-if-range)#switchport trunk native vlan 1000
+SW1(config-if-range)#switchport trunk allowed vlan 10,20,30,40,1000
+SW1(config-if-range)#no shutdown
+SW1(config-if-range)#exit
+SW1(config)#
+SW1(config)#interface range gigabitEthernet 1/0/2-3
+SW1(config-if-range)#channel-group 1 mode active 
+SW1(config-if-range)#
+Creating a port-channel interface Port-channel 1
+SW1(config-if-range)#exit
+SW1(config)#interface port-channel 1
+SW1(config-if)#switchport mode trunk 
+SW1(config-if)#switchport trunk native vlan 1000
+SW1(config-if)#switchport trunk allowed vlan 10,20,30,40,1000
+SW1(config-if)#no shutdown 
+SW1(config-if)#exit
+SW1(config)#interface gigabitEthernet 1/0/1
+SW1(config-if)#switchport mode trunk
+SW1(config-if)#switchport trunk native vlan 1000
+SW1(config-if)#switchport trunk allowed vlan 10,20,30,40,1000
+SW1(config-if)#no shutdown
+SW1(config-if)#exit
+SW1(config)#exit
+SW1#
+SW1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW1#
+
+SW2
+Switch>enable
+Switch#configure terminal
+Switch(config)#hostname SW2
+SW2(config)#vlan 10
+SW2(config-vlan)#name Management
+SW2(config-vlan)#exit
+SW2(config)#vlan 20
+SW2(config-vlan)#name IT
+SW2(config-vlan)#exit
+SW2(config)#vlan 30
+SW2(config-vlan)#name Sales
+SW2(config-vlan)#exit
+SW2(config)#vlan 40
+SW2(config-vlan)#name Operations
+SW2(config-vlan)#exit
+SW2(config)#vlan 1000
+SW2(config-vlan)#name Native
+SW2(config-vlan)#exit
+SW2(config)#interface range gigabitEthernet 1/0/10-12
+SW2(config-if-range)#switchport mode trunk
+SW2(config-if-range)#switchport trunk native vlan 1000
+SW2(config-if-range)#switchport trunk allowed vlan 10,20,30,40,1000
+SW2(config-if-range)#no shutdown
+SW2(config-if-range)#exit
+SW2(config)#interface gigabitEthernet 1/0/20
+SW2(config-if)#switchport mode access 
+SW2(config-if)#switchport access vlan 20
+SW2(config-if)#no shutdown 
+SW2(config-if)#exit
+SW2(config)#interface range gigabitEthernet 1/0/2-3
+SW2(config-if-range)#channel-group 1 mode active 
+SW2(config-if-range)#
+Creating a port-channel interface Port-channel 1
+SW2(config-if-range)#exit
+SW2(config)#interface port-channel 1
+SW2(config-if)#switchport mode trunk 
+SW2(config-if)#switchport trunk native vlan 1000
+SW2(config-if)#switchport trunk allowed vlan 10,20,30,40,1000
+SW2(config-if)#no shutdown
+SW2(config-if)#exit
+SW2(config)#interface gigabitEthernet 1/0/1
+SW2(config-if)#switchport mode trunk
+SW2(config-if)#switchport trunk native vlan 1000
+SW2(config-if)#switchport trunk allowed vlan 10,20,30,40,1000
+SW2(config-if)#no shutdown
+SW2(config-if)#exit
+SW2(config)#exit
+SW2#
+SW2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW2#
+
+4. Настраиваем маршрутизаторы (субинтерфейсы, ip-адреса)
+
+R1
+Router>enable
+Router#configure terminal
+Router(config)#interface gigabitEthernet 6/0.10
+Router(config-subif)#ip address 192.168.10.252 255.255.255.0
+Router(config-subif)#encapsulation dot1Q 10
+Router(config-subif)#description Management
+Router(config-subif)#no shutdown
+Router(config-subif)#exit
+Router(config)#interface gigabitEthernet 6/0.20
+Router(config-subif)#ip address 192.168.20.252 255.255.255.0
+Router(config-subif)#encapsulation dot1Q 20
+Router(config-subif)#description IT
+Router(config-subif)#no shutdown
+Router(config-subif)#exit
+Router(config)#interface gigabitEthernet 6/0.30
+Router(config-subif)#ip address 192.168.30.252 255.255.255.0
+Router(config-subif)#description Sales
+Router(config-subif)#encapsulation dot1Q 30
+Router(config-subif)#no shutdown
+Router(config-subif)#exit
+Router(config)#interface gigabitEthernet 6/0.40
+Router(config-subif)#ip address 192.168.40.252 255.255.255.0
+Router(config-subif)#encapsulation dot1Q 40
+Router(config-subif)#description Operations
+Router(config-subif)#no shutdown
+Router(config-subif)#exit
+Router(config)#interface gigabitEthernet 6/0.1000
+Router(config-subif)#encapsulation dot1Q 1000 native 
+Router(config-subif)#description Native
+Router(config-subif)#no shutdown
+Router(config-subif)#exit
+Router(config)#interface gigabitEthernet 6/0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#interface gigabitEthernet 8/0
+Router(config-if)#ip address 10.1.0.2 255.255.255.252
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#exit
+Router#
+Router#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Router#
+Router#configure terminal
+Router(config)#hostname R1
+R1(config)#exit
+R1#
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+R2
+Router>enable
+Router#configure terminal
+Router(config)#hostname R2
+R2(config)#interface gigabitEthernet 9/0.10
+R2(config-subif)#ip address 192.168.10.253 255.255.255.0
+R2(config-subif)#encapsulation dot1Q 10
+R2(config-subif)#description Management
+R2(config-subif)#no shutdown
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.20
+R2(config-subif)#ip address 192.168.20.253 255.255.255.0
+R2(config-subif)#encapsulation dot1Q 20
+R2(config-subif)#description IT
+R2(config-subif)#no shutdown
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.30
+R2(config-subif)#ip address 192.168.30.253 255.255.255.0
+R2(config-subif)#encapsulation dot1Q 30
+R2(config-subif)#description Sales
+R2(config-subif)#no shutdown
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.40
+R2(config-subif)#ip address 192.168.40.253 255.255.255.0
+R2(config-subif)#encapsulation dot1Q 40
+R2(config-subif)#description Operations
+R2(config-subif)#no shutdown
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.1000
+R2(config-subif)#encapsulation dot1Q 1000 native 
+R2(config-subif)#description Native
+R2(config-subif)#no shutdown
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0
+R2(config-if)#no shutdown
+R2(config-if)#exit
+R2(config)#interface gigabitEthernet 8/0
+R2(config-if)#ip address 10.2.0.2 255.255.255.252
+R2(config-if)#no shutdown
+R2(config-if)#exit
+R2(config)#exit
+R2#
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+5. HSRP R1
+
+R1>enable
+R1#conf ter
+R1(config)#interface gigabitEthernet 6/0
+R1(config-if)#standby version 2
+R1(config-if)#exit
+R1(config)#interface gigabitEthernet 6/0.10
+R1(config-subif)#standby 1 ip 192.168.10.254
+R1(config-subif)#standby 1 priority 150
+R1(config-subif)#standby 1 preempt 
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.20
+R1(config-subif)#standby 2 ip 192.168.20.254
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.30
+R1(config-subif)#standby 3 ip 192.168.30.254
+R1(config-subif)#standby 3 priority 150
+R1(config-subif)#standby 3 preempt 
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.40
+R1(config-subif)#standby 4 ip 192.168.40.254
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+R1(config)#exit
+R1#
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+HSRP R2
+R2>enable
+R2#configure terminal
+R2(config)#interface gi9/0
+R2(config-if)#standby version 2
+R2(config-if)#exit
+R2(config)#interface gigabitEthernet 9/0.10
+R2(config-subif)#standby 1 ip 192.168.10.254
+R2(config-subif)#no shutdown 
+R2(config-subif)#exit
+R2(config)#
+R2(config)#interface gigabitEthernet 9/0.20
+R2(config-subif)#standby 2 ip 192.168.20.254
+R2(config-subif)#standby 2 priority 150
+R2(config-subif)#standby 2 preempt
+R2(config-subif)#no shutdown 
+R2(config-subif)#exit
+R2(config)#
+R2(config)#interface gigabitEthernet 9/0.30
+R2(config-subif)#standby 3 ip 192.168.30.254
+R2(config-subif)#no shutdown 
+R2(config-subif)#exit
+R2(config)#
+R2(config)#interface gigabitEthernet 9/0.40
+R2(config-subif)#standby 4 ip 192.168.40.254
+R2(config-subif)#standby 4 priority 150
+R2(config-subif)#standby 4 preempt 
+R2(config-subif)#no shutdown 
+R2(config)#exit
+R2#
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+6. Настройка маршрутизатора R3 (провайдерского) (ip-адреса интерфейсов, интерфейс loopback)
+
+Router>enable
+Router#configure terminal
+Router(config)#hostname R3
+R3(config)#interface gigabitEthernet 0/0/0
+R3(config-if)#ip address 10.1.0.1 255.255.255.252
+R3(config-if)#no shutdown 
+R3(config-if)#exit
+R3(config)#interface gigabitEthernet 0/0/1
+R3(config-if)#ip address 10.2.0.1 255.255.255.252
+R3(config-if)#no shutdown 
+R3(config-if)#exit
+R3(config)#interface loopback 1
+R3(config-if)#ip address 172.16.1.1 255.255.255.0
+R3(config-if)#no shutdown 
+R3(config-if)#exit
+R3(config)#exit
+R3#
+R3#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R3#
+
+7. Настройка маршрутов по умолчанию для R1, R2.
+R1>enable
+R1#configure terminal
+R1(config)#ip route 0.0.0.0 0.0.0.0 10.1.0.1
+R1(config)#exit
+R1#
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+R2>enable
+R2#configure terminal 
+R2(config)#ip route 0.0.0.0 0.0.0.0 10.2.0.1
+R2(config)#exit
+R2#
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+8. Настройка RSTP на коммутаторах L2, L3.
+
+S1>enable
+S1#configure terminal
+S1(config)#spanning-tree mode rapid-pvst 
+S1(config)#exit
+S1#
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#
+
+S2>enable 
+S2#configure ter
+S2#configure terminal 
+S2(config)#spanning-tree mode rapid-pvst 
+S2(config)#exit
+S2#
+S2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#
+
+S3>enable 
+S3#configure terminal 
+S3(config)#spanning-tree mode rapid-pvst 
+S3(config)#exit
+S3#
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#
+
+SW1>enable
+SW1#configure terminal 
+SW1(config)#spanning-tree mode rapid-pvst 
+SW1(config)#spanning-tree vlan 10,30 root primary 
+SW1(config)#spanning-tree vlan 20,40 root secondary 
+SW1(config)#exit
+SW1#
+SW1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW1#
+
+SW2>enable 
+SW2#configure terminal 
+SW2(config)#spanning-tree mode rapid-pvst 
+SW2(config)#spanning-tree vlan 20,40 root primary 
+SW2(config)#spanning-tree vlan 10,30 root secondary 
+SW2(config)#exit
+SW2#
+SW2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW2#
+
+9. Настройка NAT на R1, R2.
+Т.к. провайдер выделил нам подсеть с двумя глобальными ip-адресами, мы будем настраивать PAT, где будем использовать не пул адресов, а всего 1 глобальный адрес (на внешних интерфейсах R1 и R2.
+R1
+R1>enable
+R1#configure terminal 
+R1(config)#access-list 1 permit 192.168.0.0 0.0.255.255
+R1(config)#ip nat inside source list 1 interface gigabitEthernet 8/0 overload 
+R1(config)#interface gigabitEthernet 6/0
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.10
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.20
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.30
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 6/0.40
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#interface gigabitEthernet 8/0
+R1(config-if)#ip nat outside 
+R1(config-if)#exit
+R1(config)#exit
+R1#
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+R2
+R2>enable
+R2#configure terminal 
+R2(config)#access-list 2 permit 192.168.0.0 0.0.255.255
+R2(config)#ip nat inside source list 2 interface gigabitEthernet 8/0 overload 
+R2(config)#interface gigabitEthernet 9/0.10
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.20
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.30
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0.40
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#interface gigabitEthernet 9/0
+R2(config-if)#ip nat inside
+R2(config-if)#exit
+R2(config)#interface gigabitEthernet 8/0
+R2(config-if)#ip nat outside 
+R2(config-if)#exit
+R2(config)#exit
+R2#
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+10. Настройка NTP на сервере и оборудовании.
+
+S1>enable
+S1#configure terminal
+S1(config)#ntp server 192.168.20.100
+S1(config)#exit
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#
+
+S2>enable
+S2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S2(config)#ntp server 192.168.20.100
+S2(config)#exit
+S2#
+S2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#
+
+S3>enable
+S3#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S3(config)#ntp server 192.168.20.100
+S3(config)#exit
+S3#
+S3#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#
+
+R1>enable 
+R1#configure terminal 
+R1(config)#ntp server 192.168.20.100
+R1(config)#ntp update-calendar 
+R1(config)#exit
+R1#
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+R2>enable 
+R2#configure terminal 
+R2(config)#ntp server 192.168.20.100
+R2(config)#ntp update-calendar 
+R2(config)#exit
+R2#
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+SW2>enable 
+SW2#configure terminal 
+SW2(config)#ntp server 192.168.20.100
+SW2(config)#ntp update-calendar 
+SW2(config)#exit
+SW2#
+SW2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW2#
+
+SW1>enable 
+SW1#configure terminal 
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW1(config)#ntp server 192.168.20.100
+SW1(config)#ntp update-calendar 
+SW1(config)#exit
+SW1#
+SW1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW1#
+
+
+11. Базовая настройка оборудования (безопасности).
+S1>enable
+S1#configure terminal 
+S1(config)#no ip domain-lookup 
+S1(config)#enable secret class
+S1(config)#line console 0  
+S1(config-line)#password cisco
+S1(config-line)#login  
+S1(config-line)#logging synchronous  
+S1(config-line)#exit
+S1(config)#line vty 0 4  
+S1(config-line)#password cisco
+S1(config-line)#login  
+S1(config-line)#exit
+S1(config)#service password-encryption
+S1(config)#banner motd #
+!!!DONT COMING TO S1!!!
+#
+S1(config)#exit
+S1#
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#
+
+S2>enable 
+S2#configure terminal 
+S2(config)#no ip domain-lookup
+S2(config)#enable secret class
+S2(config)#line console 0  
+S2(config-line)#password cisco
+S2(config-line)#login 
+S2(config-line)#logging synchronous  
+S2(config-line)#exit
+S2(config)#line vty 0 4  
+S2(config-line)#password cisco
+S2(config-line)#login 
+S2(config-line)#exit
+S2(config)#service password-encryption
+S2(config)#banner motd #
+!!!DONT COMING TO S2!!!
+#
+S2(config)#exit
+S2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S2#
+
+S3>enable 
+S3#configure terminal 
+S3(config)#no ip domain-lookup
+S3(config)#enable secret class
+S3(config)#line console 0  
+S3(config-line)#password cisco
+S3(config-line)#login 
+S3(config-line)#logging synchronous 
+S3(config-line)#exit
+S3(config)#line vty 0 4  
+S3(config-line)#password cisco
+S3(config-line)#login 
+S3(config-line)#exit
+S3(config)#service password-encryption
+S3(config)#banner motd #
+!!!DONT COMING TO S3!!!
+#
+S3(config)#exit
+S3#
+S3#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S3#
+
+SW1>enable 
+SW1#configure terminal 
+SW1(config)#no ip domain-lookup
+SW1(config)#enable secret class
+SW1(config)#line console 0 
+SW1(config-line)#password cisco
+SW1(config-line)#login 
+SW1(config-line)#logging synchronous 
+SW1(config-line)#exit
+SW1(config)#line vty 0 4  
+SW1(config-line)#password cisco
+SW1(config-line)#login 
+SW1(config-line)#exit
+SW1(config)#service password-encryption
+SW1(config)#banner motd #
+!!!DONT COMING TO SW1!!!
+#
+SW1(config)#exit
+SW1#
+SW1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW1#
+
+SW2>enable 
+SW2#configure terminal
+SW2(config)#no ip domain-lookup
+SW2(config)#enable secret class
+SW2(config)#line console 0 
+SW2(config-line)#password cisco
+SW2(config-line)#login 
+SW2(config-line)#logging synchronous 
+SW2(config-line)#exit
+SW2(config)#line vty 0 4  
+SW2(config-line)#password cisco
+SW2(config-line)#login 
+SW2(config-line)#exit
+SW2(config)#service password-encryption
+SW2(config)#banner motd #
+!!!DONT COMING TO SW2!!!
+#
+SW2(config)#exit
+SW2#
+SW2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SW2#
+
+R1>enable 
+R1#configure terminal
+R1(config)#no ip domain-lookup
+R1(config)#enable secret class
+R1(config)#line console 0 
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#logging synchronous 
+R1(config-line)#exit
+R1(config)#line vty 0 4  
+R1(config-line)#password cisco
+R1(config-line)#login 
+R1(config-line)#exit
+R1(config)#service password-encryption
+R1(config)#banner motd #
+!!!DONT COMING TO R1!!!
+#
+R1(config)#exit
+R1#
+R1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
+
+R2>enable
+R2#configure terminal
+R2(config)#no ip domain-lookup
+R2(config)#enable secret class
+R2(config)#line console 0 
+R2(config-line)#password cisco
+R2(config-line)#login
+R2(config-line)#logging synchronous 
+R2(config-line)#exit
+R2(config)#line vty 0 4  
+R2(config-line)#password cisco
+R2(config-line)#login 
+R2(config-line)#exit
+R2(config)#service password-encryption
+R2(config)#banner motd #
+!!!DONT COMING TO R2!!!
+#
+R2(config)#exit
+R2#
+R2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R2#
+
+12. Создание отдельного vlan для серверной и настройка его на оборудовании.
