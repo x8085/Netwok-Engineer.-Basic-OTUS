@@ -175,6 +175,7 @@ Building configuration...
 S3#
 
 3. Настраиваем Vlan-ы на L3-коммутаторах.
+
 SW1
 Switch>enable
 Switch#configure terminal 
@@ -387,8 +388,9 @@ Building configuration...
 [OK]
 R2#
 
-5. HSRP R1
+5. Настраиваем HSRP. 
 
+R1
 R1>enable
 R1#conf ter
 R1(config)#interface gigabitEthernet 6/0
@@ -484,6 +486,7 @@ Building configuration...
 R3#
 
 7. Настройка маршрутов по умолчанию для R1, R2.
+
 R1>enable
 R1#configure terminal
 R1(config)#ip route 0.0.0.0 0.0.0.0 10.1.0.1
@@ -569,7 +572,8 @@ Building configuration...
 SW2#
 
 9. Настройка NAT на R1, R2.
-Т.к. провайдер выделил нам подсеть с двумя глобальными ip-адресами, мы будем настраивать PAT, где будем использовать не пул адресов, а всего 1 глобальный адрес (на внешних интерфейсах R1 и R2.
+Т.к. провайдер выделил нам подсеть с двумя глобальными ip-адресами, мы будем настраивать PAT, где будем использовать не пул адресов, а всего 1 глобальный адрес (на внешних интерфейсах R1 и R2).
+
 R1
 R1>enable
 R1#configure terminal 
@@ -719,6 +723,7 @@ SW1#
 
 
 11. Базовая настройка оборудования (безопасности).
+
 S1>enable
 S1#configure terminal 
 S1(config)#no ip domain-lookup 
@@ -893,4 +898,4 @@ Building configuration...
 [OK]
 R2#
 
-12. Создание отдельного vlan для серверной и настройка его на оборудовании.
+12. В перспективе развития-создание отдельного vlan для серверной и настройка его на оборудовании.
